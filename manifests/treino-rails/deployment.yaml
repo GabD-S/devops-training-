@@ -16,7 +16,8 @@ spec:
     spec:
       initContainers:
         - name: db-migrate
-          image: ghcr.io/switchdreams/devops-training:1.0.0
+          image: todo-app-v1:latest
+          imagePullPolicy: IfNotPresent
           command: ["./bin/rails", "db:prepare"]
           env:
             # Chave 'uri' gerada automaticamente pelo CNPG no Secret
