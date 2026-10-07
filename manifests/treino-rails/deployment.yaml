@@ -5,7 +5,7 @@ metadata:
   labels:
     app: treino-rails
 spec:
-  replicas: {{ .Values.replicas }}
+  replicas: 1
   selector:
     matchLabels:
       app: treino-rails
@@ -16,40 +16,32 @@ spec:
     spec:
       initContainers:
         - name: db-migrate
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: ghcr.io/switchdreams/devops-training:1.0.0
           command: ["./bin/rails", "db:prepare"]
           env:
-            - name: RAILS_DATABASE_HOST
+            # Chave 'uri' gerada automaticamente pelo CNPG no Secret
+            # treino-postgres-app: postgresql://user:pass@host:port/db
+            - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: treino-postgres-app
-                  key: host
-            - name: RAILS_APP_DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: treino-postgres-app
-                  key: password
+                  key: uri
             - name: SECRET_KEY_BASE
-              value: "{{ .Values.secretKeyBase }}"
+              value: "treino-nao-use-em-producao-0123456789abcdef"
       containers:
         - name: api
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: ghcr.io/switchdreams/devops-training:1.0.0
           ports:
             - name: http
               containerPort: 3000
           env:
-            - name: RAILS_DATABASE_HOST
+            - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
                   name: treino-postgres-app
-                  key: host
-            - name: RAILS_APP_DATABASE_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: treino-postgres-app
-                  key: password
+                  key: uri
             - name: SECRET_KEY_BASE
-              value: "{{ .Values.secretKeyBase }}"
+              value: "treino-nao-use-em-producao-0123456789abcdef"
           resources:
             requests:
               cpu: 100m

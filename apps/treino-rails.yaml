@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/<SEU-USUARIO>/devops-training   # TODO: o seu repositorio
-    path: charts/treino-rails
+    path: manifests/treino-rails
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc

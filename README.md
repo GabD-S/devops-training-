@@ -12,15 +12,12 @@ Cada dupla sobe um cluster local com **kind**, instala **Argo CD**, **ingress-ng
 devops-training/
 ├── kind-config.yaml             # cluster local (portas 80/443 expostas)
 ├── apps/
-│   └── treino-rails.yaml        # Application do Argo CD (aponta para o chart)
-├── charts/treino-rails/         # Chart Helm quase estático da app
-│   ├── Chart.yaml
-│   ├── values.yaml              # replicas, imagem/tag, host do Ingress
-│   └── templates/
-│       ├── deployment.yaml      # app + initContainer de migração
-│       ├── service.yaml
-│       ├── ingress.yaml         # host app.localtest.me
-│       └── postgres.yaml        # Cluster do CNPG
+│   └── treino-rails.yaml        # Application do Argo CD (aponta para os manifests)
+├── manifests/treino-rails/      # Manifests puros da app (sem Helm)
+│   ├── deployment.yaml          # app + initContainer de migração
+│   ├── service.yaml
+│   ├── ingress.yaml             # host app.localtest.me
+│   └── postgres.yaml            # Cluster do CNPG
 ├── rails-app/                   # código da app (Rails 8 + Postgres) e Dockerfile
 ├── scripts/
 │   ├── install-infra.sh         # instala Argo CD, ingress-nginx e CNPG (plano B)
