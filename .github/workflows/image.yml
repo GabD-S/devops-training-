@@ -1,7 +1,6 @@
 name: Publicar imagem
 
 # Publica a imagem da app no GHCR quando uma tag vX.Y.Z e criada (ex.: v1.0.0 -> imagem 1.0.0).
-# Roda SOMENTE no repositorio do instrutor: copias feitas pelos alunos (template) nao publicam nada.
 on:
   push:
     tags: ["v*"]
@@ -17,7 +16,6 @@ permissions:
 
 jobs:
   image:
-    if: github.repository == 'SwitchDreams/devops-training'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
