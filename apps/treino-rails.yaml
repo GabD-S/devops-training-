@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<SEU-USUARIO>/devops-training   # TODO: o seu repositorio
+    repoURL: https://github.com/GabD-S/devops-training-
     path: manifests/treino-rails
     targetRevision: main
   destination:
