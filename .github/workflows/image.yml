@@ -32,7 +32,8 @@ jobs:
             VERSION="${GITHUB_REF_NAME#v}"
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "image=ghcr.io/${GITHUB_REPOSITORY,,}" >> "$GITHUB_OUTPUT"
+          # Nome do repo termina com hifen (invalido em tags docker): fixa o nome da imagem
+          echo "image=ghcr.io/gabd-s/devops-training" >> "$GITHUB_OUTPUT"
 
       - name: QEMU (build multi-arch)
         uses: docker/setup-qemu-action@v3
