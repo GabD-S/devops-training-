@@ -1,8 +1,9 @@
 <% content_for :title, "Todos" %>
 
 <div class="hero">
-  <h1>Minhas <span>Tarefas</span> 📝</h1>
-  <p>Organize seu dia, uma tarefa de cada vez.</p>
+  <p class="hero-kicker"><%= Date.current.strftime("%d.%m.%Y") %></p>
+  <h1>Modo <span>foco</span></h1>
+  <p>Sem enrolação. O que entra aqui, sai feito.</p>
 </div>
 
 <div class="card">
@@ -28,8 +29,8 @@
   </div>
 <% else %>
   <div class="empty card">
-    <span class="empty-icon">🎉</span>
-    <strong>Nada por aqui!</strong>
-    Adicione sua primeira tarefa acima.
+    <span class="empty-icon">🌑</span>
+    <strong>Zerou a lista.</strong>
+    Primeira tarefa aí em cima.
   </div>
 <% end %>

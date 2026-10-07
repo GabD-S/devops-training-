@@ -1,19 +1,21 @@
 /*
- * App de Todos — estilos globais
+ * App de Todos — tema escuro
  */
 
 :root {
-  --bg: #f4f5fb;
-  --surface: #ffffff;
-  --text: #1e2235;
-  --text-muted: #7a7f99;
-  --primary: #6c5ce7;
-  --primary-dark: #5a4bd1;
-  --primary-soft: #eeebff;
-  --danger: #e74c3c;
-  --success: #27ae60;
-  --border: #e8e9f2;
-  --shadow: 0 10px 30px rgba(30, 34, 53, 0.08);
+  --bg: #0a0a0c;
+  --surface: #141418;
+  --surface-2: #1c1c22;
+  --text: #f2f2f5;
+  --text-muted: #8b8b96;
+  --primary: #a3e635;
+  --primary-dark: #bef264;
+  --primary-soft: rgba(163, 230, 53, 0.14);
+  --danger: #f87171;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --border: #26262e;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   --radius: 14px;
 }
 
@@ -30,7 +32,9 @@ html {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  background: linear-gradient(160deg, #eef0fb 0%, #f6f4ff 45%, #fdf3f7 100%);
+  background: var(--bg);
+  background-image: radial-gradient(ellipse 80% 50% at 50% -20%,
+      rgba(163, 230, 53, 0.07), transparent);
   background-attachment: fixed;
   color: var(--text);
   min-height: 100vh;
@@ -47,10 +51,20 @@ body {
 
 .hero {
   margin-bottom: 28px;
+  text-align: center;
+}
+
+.hero-kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--primary);
+  margin-bottom: 10px;
 }
 
 .hero h1 {
-  font-size: 2rem;
+  font-size: 2.1rem;
   font-weight: 800;
   letter-spacing: -0.03em;
 }
@@ -61,7 +75,7 @@ body {
 
 .hero p {
   color: var(--text-muted);
-  margin-top: 4px;
+  margin-top: 6px;
   font-size: 0.95rem;
 }
 
@@ -110,15 +124,19 @@ input[type="text"] {
   font-size: 1rem;
   font-family: inherit;
   color: var(--text);
-  background: var(--bg);
+  background: var(--surface-2);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="text"]::placeholder {
+  color: var(--text-muted);
 }
 
 input[type="text"]:focus {
   outline: none;
   border-color: var(--primary);
   box-shadow: 0 0 0 3px var(--primary-soft);
-  background: var(--surface);
+  background: var(--surface-2);
 }
 
 .check-field {
@@ -160,8 +178,8 @@ input[type="text"]:focus {
 
 .btn-primary {
   background: var(--primary);
-  color: #fff;
-  box-shadow: 0 4px 14px rgba(108, 92, 231, 0.35);
+  color: #0a0a0c;
+  box-shadow: 0 4px 18px rgba(163, 230, 53, 0.25);
 }
 
 .btn-primary:hover {
@@ -175,7 +193,7 @@ input[type="text"]:focus {
 }
 
 .btn-ghost:hover {
-  background: var(--bg);
+  background: var(--surface-2);
   color: var(--text);
 }
 
@@ -211,13 +229,13 @@ input[type="text"]:focus {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 14px 16px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, border-color 0.15s ease;
   animation: slide-in 0.25s ease;
 }
 
 .todo-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(30, 34, 53, 0.12);
+  border-color: #3a3a44;
 }
 
 @keyframes slide-in {
@@ -251,7 +269,7 @@ input[type="text"]:focus {
   justify-content: center;
   width: 26px;
   height: 26px;
-  border: 2px solid #cfd2e4;
+  border: 2px solid #3a3a44;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
@@ -260,7 +278,7 @@ input[type="text"]:focus {
 .todo-check svg {
   width: 14px;
   height: 14px;
-  stroke: #fff;
+  stroke: #0a0a0c;
   stroke-width: 3;
   fill: none;
   stroke-linecap: round;
@@ -321,7 +339,7 @@ input[type="text"]:focus {
   border: none;
   border-radius: 10px;
   background: transparent;
-  color: #c3c6d8;
+  color: #55555f;
   cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease;
 }
@@ -336,7 +354,7 @@ input[type="text"]:focus {
 }
 
 .todo-delete:hover {
-  background: #fdecea;
+  background: rgba(248, 113, 113, 0.12);
   color: var(--danger);
 }
 
@@ -350,19 +368,20 @@ input[type="text"]:focus {
   font-size: 0.88rem;
   color: var(--text-muted);
   font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 .progress {
   flex: 1;
   height: 8px;
-  background: var(--border);
+  background: var(--surface-2);
   border-radius: 99px;
   overflow: hidden;
 }
 
 .progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), #a29bfe);
+  background: linear-gradient(90deg, var(--primary), #d9f99d);
   border-radius: 99px;
   transition: width 0.4s ease;
 }
@@ -391,9 +410,9 @@ input[type="text"]:focus {
 /* ---------- Flash ---------- */
 
 .notice {
-  background: #e8f8f0;
+  background: rgba(74, 222, 128, 0.1);
   color: var(--success);
-  border: 1px solid #c7ecd8;
+  border: 1px solid rgba(74, 222, 128, 0.3);
   border-radius: 10px;
   padding: 12px 16px;
   margin-bottom: 18px;
@@ -403,9 +422,9 @@ input[type="text"]:focus {
 }
 
 .alert {
-  background: #fdecea;
+  background: rgba(248, 113, 113, 0.1);
   color: var(--danger);
-  border: 1px solid #f6c8c2;
+  border: 1px solid rgba(248, 113, 113, 0.3);
   border-radius: 10px;
   padding: 12px 16px;
   margin-bottom: 18px;
@@ -416,9 +435,9 @@ input[type="text"]:focus {
 /* ---------- Erros de validação ---------- */
 
 .errors {
-  background: #fdecea;
+  background: rgba(248, 113, 113, 0.1);
   color: var(--danger);
-  border: 1px solid #f6c8c2;
+  border: 1px solid rgba(248, 113, 113, 0.3);
   border-radius: 10px;
   padding: 12px 16px;
   margin-bottom: 16px;
@@ -457,12 +476,12 @@ input[type="text"]:focus {
 }
 
 .badge-pending {
-  background: #fff4e0;
-  color: #e67e22;
+  background: rgba(251, 191, 36, 0.12);
+  color: var(--warning);
 }
 
 .badge-done {
-  background: #e8f8f0;
+  background: rgba(74, 222, 128, 0.12);
   color: var(--success);
 }
 
@@ -476,4 +495,4 @@ input[type="text"]:focus {
   }
 }
 
-.app-footer { margin: 2rem auto 1rem; text-align: center; font-size: 0.8rem; color: #6b7280; }
+.app-footer { margin: 2rem auto 1rem; text-align: center; font-size: 0.8rem; color: #55555f; }
